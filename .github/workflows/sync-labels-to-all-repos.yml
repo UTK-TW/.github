@@ -12,6 +12,12 @@ on:
         default: 'false'
         type: boolean
 
+# 設定工作流程所需的權限
+permissions:
+  contents: read        # 讀取儲存庫內容
+  issues: write        # 修改 issues 標籤
+  pull-requests: write # 修改 PR 標籤
+
 jobs:
   get-repos:
     runs-on: ubuntu-latest
@@ -38,6 +44,10 @@ jobs:
     needs: get-repos
     runs-on: ubuntu-latest
     name: 同步標籤
+    permissions:
+      contents: read        # 讀取儲存庫內容
+      issues: write        # 修改 issues 標籤
+      pull-requests: write # 修改 PR 標籤
     strategy:
       fail-fast: false
       max-parallel: 5
@@ -53,9 +63,10 @@ jobs:
       with:
         config-file: .github/labels.yml
         token: ${{ secrets.GITHUB_TOKEN }}
-        repository: ${{ github.repository_owner }}/${{ matrix.repository }}
         delete-other-labels: false
         dry-run: ${{ github.event.inputs.dry_run == 'true' }}
+      env:
+        GITHUB_REPOSITORY: ${{ github.repository_owner }}/${{ matrix.repository }}
       continue-on-error: true
       
     - name: 記錄同步結果
@@ -76,7 +87,7 @@ jobs:
     steps:
     - name: 輸出同步摘要
       run: |
-        echo "## 標籤同步摘要 📋" >> $GITHUB_STEP_SUMMARY
+        echo "## 標籤同步摘要" >> $GITHUB_STEP_SUMMARY
         echo "" >> $GITHUB_STEP_SUMMARY
         echo "- **觸發原因**: ${{ github.event_name }}" >> $GITHUB_STEP_SUMMARY
         echo "- **目標儲存庫數量**: $(echo '${{ needs.get-repos.outputs.repositories }}' | jq length)" >> $GITHUB_STEP_SUMMARY
