@@ -1,0 +1,152 @@
+name: 同步標籤到所有組織儲存庫
+
+on:
+  push:
+    branches: [ main ]
+    paths: [ '.github/labels.yml' ]
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: '執行預覽模式（不實際套用變更）'
+        required: false
+        default: false
+        type: boolean
+
+jobs:
+  get-repos:
+    runs-on: ubuntu-latest
+    name: 獲取組織儲存庫清單
+    outputs:
+      repositories: ${{ steps.get-repos.outputs.repositories }}
+    
+    steps:
+    - name: 獲取組織內所有儲存庫
+      id: get-repos
+      run: |
+        # 檢查是否有 ORG_PAT_TOKEN
+        if [ -z "${{ secrets.ORG_PAT_TOKEN }}" ]; then
+          echo "❌ 錯誤: 需要設定 ORG_PAT_TOKEN secret 才能存取組織內的其他儲存庫"
+          echo "請到儲存庫設定 > Secrets and variables > Actions 中新增 ORG_PAT_TOKEN"
+          echo "Token 需要以下權限: repo, read:org"
+          exit 1
+        fi
+        
+        # 使用 GitHub API 獲取組織內所有儲存庫（排除 fork 和 archived）
+        echo "🔍 正在獲取組織 ${{ github.repository_owner }} 的儲存庫清單..."
+        
+        REPOS=$(curl -s \
+          -H "Authorization: Bearer ${{ secrets.ORG_PAT_TOKEN }}" \
+          -H "Accept: application/vnd.github.v3+json" \
+          "https://api.github.com/orgs/${{ github.repository_owner }}/repos?per_page=100&type=all" \
+          | jq -r '.[] | select(.fork == false and .archived == false) | .name' \
+          | jq -R -s -c 'split("\n")[:-1]')
+        
+        if [ "$REPOS" = "[]" ] || [ -z "$REPOS" ]; then
+          echo "❌ 未找到任何儲存庫或 API 呼叫失敗"
+          echo "請檢查 ORG_PAT_TOKEN 的權限"
+          exit 1
+        fi
+        
+        echo "✅ 找到的儲存庫: $REPOS"
+        echo "repositories=$REPOS" >> $GITHUB_OUTPUT
+
+  sync-labels:
+    needs: get-repos
+    runs-on: ubuntu-latest
+    name: 同步標籤
+    strategy:
+      fail-fast: false
+      max-parallel: 3
+      matrix:
+        repository: ${{ fromJson(needs.get-repos.outputs.repositories) }}
+    
+    steps:
+    - name: 檢出標籤配置檔案
+      uses: actions/checkout@v4
+      with:
+        sparse-checkout: .github/labels.yml
+        
+    - name: 使用 GitHub API 同步標籤到 ${{ matrix.repository }}
+      run: |
+        echo "🔄 開始同步標籤到 ${{ github.repository_owner }}/${{ matrix.repository }}"
+        
+        # 讀取標籤配置
+        LABELS=$(yq eval -o=json '.[]' .github/labels.yml | jq -s '.')
+        
+        if [ "${{ github.event.inputs.dry_run }}" = "true" ]; then
+          echo "🔍 預覽模式：將要同步的標籤："
+          echo "$LABELS" | jq -r '.[] | "- \(.name): \(.color) (\(.description // "無描述"))"'
+          exit 0
+        fi
+        
+        # 同步每個標籤
+        echo "$LABELS" | jq -c '.[]' | while read -r label; do
+          name=$(echo "$label" | jq -r '.name')
+          color=$(echo "$label" | jq -r '.color')
+          description=$(echo "$label" | jq -r '.description // ""')
+          
+          echo "📌 處理標籤: $name"
+          
+          # 檢查標籤是否已存在
+          existing_label=$(curl -s \
+            -H "Authorization: Bearer ${{ secrets.ORG_PAT_TOKEN }}" \
+            -H "Accept: application/vnd.github.v3+json" \
+            "https://api.github.com/repos/${{ github.repository_owner }}/${{ matrix.repository }}/labels/$(echo "$name" | jq -r @uri)" \
+            | jq -r '.name // empty' 2>/dev/null)
+          
+          if [ -n "$existing_label" ]; then
+            # 更新現有標籤
+            echo "  ↻ 更新現有標籤"
+            curl -s -X PATCH \
+              -H "Authorization: Bearer ${{ secrets.ORG_PAT_TOKEN }}" \
+              -H "Accept: application/vnd.github.v3+json" \
+              "https://api.github.com/repos/${{ github.repository_owner }}/${{ matrix.repository }}/labels/$(echo "$name" | jq -r @uri)" \
+              -d "{\"name\":\"$name\",\"color\":\"$color\",\"description\":\"$description\"}" > /dev/null
+          else
+            # 創建新標籤
+            echo "  ✨ 創建新標籤"
+            curl -s -X POST \
+              -H "Authorization: Bearer ${{ secrets.ORG_PAT_TOKEN }}" \
+              -H "Accept: application/vnd.github.v3+json" \
+              "https://api.github.com/repos/${{ github.repository_owner }}/${{ matrix.repository }}/labels" \
+              -d "{\"name\":\"$name\",\"color\":\"$color\",\"description\":\"$description\"}" > /dev/null
+          fi
+        done
+        
+        echo "✅ 完成同步標籤到 ${{ matrix.repository }}"
+        
+      continue-on-error: true
+      
+    - name: 記錄同步結果
+      if: always()
+      run: |
+        if [ "${{ job.status }}" == "success" ]; then
+          echo "✅ 成功同步標籤到 ${{ matrix.repository }}"
+        else
+          echo "❌ 同步標籤到 ${{ matrix.repository }} 失敗"
+        fi
+
+  summary:
+    needs: [get-repos, sync-labels]
+    runs-on: ubuntu-latest
+    name: 同步摘要
+    if: always()
+    
+    steps:
+    - name: 輸出同步摘要
+      run: |
+        echo "## 🏷️ 標籤同步摘要" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "- **觸發原因**: ${{ github.event_name }}" >> $GITHUB_STEP_SUMMARY
+        echo "- **目標儲存庫數量**: $(echo '${{ needs.get-repos.outputs.repositories }}' | jq length)" >> $GITHUB_STEP_SUMMARY
+        echo "- **執行模式**: ${{ github.event.inputs.dry_run == 'true' && '🔍 預覽模式' || '🚀 實際執行' }}" >> $GITHUB_STEP_SUMMARY
+        echo "- **組織**: ${{ github.repository_owner }}" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "### 📋 目標儲存庫清單:" >> $GITHUB_STEP_SUMMARY
+        echo '${{ needs.get-repos.outputs.repositories }}' | jq -r '.[]' | sed 's/^/- /' >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "### 📝 設定說明:" >> $GITHUB_STEP_SUMMARY
+        echo "如果同步失敗，請確認:" >> $GITHUB_STEP_SUMMARY
+        echo "1. 已設定 \`ORG_PAT_TOKEN\` secret" >> $GITHUB_STEP_SUMMARY
+        echo "2. Token 具有 \`repo\` 和 \`read:org\` 權限" >> $GITHUB_STEP_SUMMARY
+        echo "3. Token 的擁有者對目標儲存庫有寫入權限" >> $GITHUB_STEP_SUMMARY
