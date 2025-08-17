@@ -8,7 +8,7 @@
 
 [![GitHub](https://img.shields.io/badge/GitHub-UTK--TW-black?style=for-the-badge&logo=github)](https://github.com/UTK-TW)
 [![官方網站](https://img.shields.io/badge/官方網站-utk.com.tw-blue?style=for-the-badge&logo=internet-explorer)](https://www.utk.com.tw/)
-[![授權條款](https://img.shields.io/badge/授權-MIT-green?style=for-the-badge)](LICENSE)
+[![授權條款](https://img.shields.io/badge/授權-Proprietary-red?style=for-the-badge)](LICENSE)
 
 </div>
 
@@ -45,7 +45,7 @@
 ├── CONTRIBUTING.md                  # 貢獻指南
 ├── SUPPORT.md                      # 支援說明
 ├── SECURITY.md                     # 安全政策
-├── LICENSE                         # MIT 授權條款
+├── LICENSE                         # Proprietary 授權條款
 └── README.md                       # 本檔案
 ```
 
@@ -160,7 +160,7 @@ cp LICENSE your-project/
 
 ## 📄 授權條款
 
-本專案採用 [MIT 授權條款](LICENSE)。
+本專案採用 [Proprietary 授權條款](LICENSE)。
 
 ---
 
