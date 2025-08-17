@@ -1,0 +1,86 @@
+name: 同步標籤到所有組織儲存庫
+
+on:
+  push:
+    branches: [ main ]
+    paths: [ '.github/labels.yml' ]
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: '執行預覽模式（不實際套用變更）'
+        required: false
+        default: 'false'
+        type: boolean
+
+jobs:
+  get-repos:
+    runs-on: ubuntu-latest
+    name: 獲取組織儲存庫清單
+    outputs:
+      repositories: ${{ steps.get-repos.outputs.repositories }}
+    
+    steps:
+    - name: 獲取組織內所有儲存庫
+      id: get-repos
+      run: |
+        # 使用 GitHub API 獲取組織內所有儲存庫（排除 fork 和 archived）
+        REPOS=$(curl -s \
+          -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+          -H "Accept: application/vnd.github.v3+json" \
+          "https://api.github.com/orgs/${{ github.repository_owner }}/repos?per_page=100&type=all" \
+          | jq -r '.[] | select(.fork == false and .archived == false) | .name' \
+          | jq -R -s -c 'split("\n")[:-1]')
+        
+        echo "找到的儲存庫: $REPOS"
+        echo "repositories=$REPOS" >> $GITHUB_OUTPUT
+
+  sync-labels:
+    needs: get-repos
+    runs-on: ubuntu-latest
+    name: 同步標籤
+    strategy:
+      fail-fast: false
+      max-parallel: 5
+      matrix:
+        repository: ${{ fromJson(needs.get-repos.outputs.repositories) }}
+    
+    steps:
+    - name: 檢出程式碼
+      uses: actions/checkout@v4
+      
+    - name: 同步標籤到 ${{ matrix.repository }}
+      uses: EndBug/label-sync@v2
+      with:
+        config-file: .github/labels.yml
+        token: ${{ secrets.GITHUB_TOKEN }}
+        repository: ${{ github.repository_owner }}/${{ matrix.repository }}
+        delete-other-labels: false
+        dry-run: ${{ github.event.inputs.dry_run == 'true' }}
+      continue-on-error: true
+      
+    - name: 記錄同步結果
+      if: always()
+      run: |
+        if [ "${{ job.status }}" == "success" ]; then
+          echo "✅ 成功同步標籤到 ${{ matrix.repository }}"
+        else
+          echo "❌ 同步標籤到 ${{ matrix.repository }} 失敗"
+        fi
+
+  summary:
+    needs: [get-repos, sync-labels]
+    runs-on: ubuntu-latest
+    name: 同步摘要
+    if: always()
+    
+    steps:
+    - name: 輸出同步摘要
+      run: |
+        echo "## 標籤同步摘要 📋" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "- **觸發原因**: ${{ github.event_name }}" >> $GITHUB_STEP_SUMMARY
+        echo "- **目標儲存庫數量**: $(echo '${{ needs.get-repos.outputs.repositories }}' | jq length)" >> $GITHUB_STEP_SUMMARY
+        echo "- **執行模式**: ${{ github.event.inputs.dry_run == 'true' && '預覽模式' || '實際執行' }}" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "### 儲存庫清單:" >> $GITHUB_STEP_SUMMARY
+        echo '${{ needs.get-repos.outputs.repositories }}' | jq -r '.[]' | sed 's/^/- /' >> $GITHUB_STEP_SUMMARY

@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 📞 技術支援
+    url: https://www.utk.com.tw/
+    about: 如需技術支援，請透過官方網站聯絡我們
+  - name: 💬 一般諮詢
+    url: https://github.com/UTK-TW/.github/discussions
+    about: 一般問題討論與交流

@@ -1,0 +1,196 @@
+# 標籤定義檔案
+# 此檔案定義了環友科技專案中使用的標準標籤
+# 使用 GitHub Label Sync 工具同步到各儲存庫
+
+# 問題類型標籤
+- name: "bug"
+  description: "🐛 軟體錯誤或異常行為"
+  color: "d73a4a"
+
+- name: "enhancement"
+  description: "✨ 功能增強或新特性"
+  color: "a2eeef"
+
+- name: "question"
+  description: "❓ 問題詢問或技術支援"
+  color: "d876e3"
+
+- name: "testing"
+  description: "🧪 測試相關的改進或問題"
+  color: "f39c12"
+
+- name: "refactor"
+  description: "♻️ 程式碼重構與最佳化"
+  color: "17a2b8"
+
+- name: "needs-investigation"
+  description: "🔍 需要深入調查與分析"
+  color: "6f42c1"
+
+- name: "documentation"
+  description: "📚 文件撰寫與維護"
+  color: "0075ca"
+
+# 優先級標籤
+- name: "priority: urgent"
+  description: "🚨 緊急處理 - 立即執行"
+  color: "8b0000"
+
+- name: "priority: critical"
+  description: "🔥 重要修復 - 影響正式環境"
+  color: "ff0000"
+
+- name: "priority: high"
+  description: "⚡ 高優先級 - 需優先處理"
+  color: "ff6600"
+
+- name: "priority: medium"
+  description: "📋 中優先級 - 正常排程"
+  color: "ffcc00"
+
+- name: "priority: low"
+  description: "📝 低優先級 - 有餘力時處理"
+  color: "99cc00"
+
+# 狀態標籤
+- name: "needs-triage"
+  description: "🔍 待分類與評估"
+  color: "fbca04"
+
+- name: "in-progress"
+  description: "🚧 開發進行中"
+  color: "0e8a16"
+
+- name: "on-hold"
+  description: "⏸️ 暫時擱置"
+  color: "d93f0b"
+
+- name: "blocked"
+  description: "🚫 開發受阻 - 等待前置條件"
+  color: "b60205"
+
+- name: "ready-for-review"
+  description: "👀 準備程式碼審查"
+  color: "0e8a16"
+
+- name: "changes-requested"
+  description: "🔄 審查後需要修改"
+  color: "d93f0b"
+
+# 技術領域標籤
+- name: "area: frontend"
+  description: "🎨 前端開發 (UI/UX)"
+  color: "c5def5"
+
+- name: "area: backend"
+  description: "⚙️ 後端開發 (API/服務)"
+  color: "5319e7"
+
+- name: "area: api"
+  description: "🔌 API 設計與整合"
+  color: "0366d6"
+
+- name: "area: database"
+  description: "🗄️ 資料庫設計與查詢"
+  color: "1d76db"
+
+- name: "area: deployment"
+  description: "🚀 部署與基礎設施"
+  color: "bfdadc"
+
+- name: "area: task-scheduler"
+  description: "⏰ 排程任務與自動化"
+  color: "f9d0c4"
+
+- name: "area: security"
+  description: "🔒 資訊安全相關"
+  color: "d73a4a"
+
+- name: "area: performance"
+  description: "🏃 效能調校與最佳化"
+  color: "28a745"
+
+- name: "area: testing"
+  description: "🧪 測試框架與品質保證"
+  color: "f39c12"
+
+- name: "area: devops"
+  description: "🔧 DevOps 與 CI/CD"
+  color: "6c757d"
+
+# 影響範圍標籤
+- name: "scope: breaking-change"
+  description: "💥 破壞性變更 - 需版本升級"
+  color: "b60205"
+
+- name: "scope: minor"
+  description: "📋 小幅修改 - 向下相容"
+  color: "28a745"
+
+- name: "scope: major"
+  description: "📈 重大修改 - 影響多個模組"
+  color: "dc3545"
+
+# 特殊標籤
+- name: "good-first-issue"
+  description: "👶 適合新手開發者"
+  color: "7057ff"
+
+- name: "help-wanted"
+  description: "🙋 需要社群協助"
+  color: "008672"
+
+- name: "wontfix"
+  description: "❌ 決定不修復"
+  color: "6c757d"
+
+- name: "duplicate"
+  description: "♻️ 重複的議題"
+  color: "cfd3d7"
+
+- name: "invalid"
+  description: "❗ 無效的議題"
+  color: "d1a712"
+
+# 版本標籤
+- name: "version: v1.x"
+  description: "📦 版本 1.x 相關"
+  color: "1d76db"
+
+- name: "version: v2.x"
+  description: "📦 版本 2.x 相關"
+  color: "0366d6"
+
+- name: "version: next"
+  description: "🔮 下一個版本"
+  color: "5319e7"
+
+# 環境標籤
+- name: "env: development"
+  description: "🛠️ 開發環境"
+  color: "c5def5"
+
+- name: "env: staging"
+  description: "🧪 測試環境"
+  color: "fbca04"
+
+- name: "env: production"
+  description: "🌍 生產環境"
+  color: "8b0000"
+
+# 依賴性標籤
+- name: "dependencies"
+  description: "📦 第三方套件與依賴"
+  color: "0366d6"
+
+- name: "dotnet"
+  description: "🔷 .NET 平台相關"
+  color: "512bd4"
+
+- name: "azure"
+  description: "☁️ Azure 雲端服務"
+  color: "0078d4"
+
+- name: "entityframework"
+  description: "🗃️ Entity Framework ORM"
+  color: "512bd4"
