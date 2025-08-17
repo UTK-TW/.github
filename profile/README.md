@@ -2,7 +2,7 @@
 
 <div align="center">
 
-![環友科技 Logo](https://via.placeholder.com/300x100/2E8B57/FFFFFF?text=環友科技)
+![環友科技 Logo](https://www.utk.com.tw/Content/images/logo_blue.svg)
 
 **專業的軟體開發與技術服務公司**
 
