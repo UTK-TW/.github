@@ -344,13 +344,6 @@ Monday - Friday: 09:00 - 18:00 (GMT+8)
 
 ## 🔧 **技術細節與完整資訊 | Technical Details**
 
-<details>
-<summary><strong>📖 點擊展開完整技術資訊與認證列表</strong></summary>
-
-<br>
-
-## 🛠️ **Complete Tech Stack | 完整技術棧**
-
 ### 🏗️ **Backend Development | 後端開發**
 
 [![.NET 8](https://img.shields.io/badge/.NET_8-512BD4?style=flat-square&logo=dotnet&logoColor=white)](https://dotnet.microsoft.com/)
@@ -481,8 +474,6 @@ Monday - Friday: 09:00 - 18:00 (GMT+8)
 </tr>
 </table>
 
-</details>
-
 ---
 
 <div align="center">
@@ -511,3 +502,7 @@ Monday - Friday: 09:00 - 18:00 (GMT+8)
 <small><i>⚡ Professional Excellence in Software Development | 軟體開發專業卓越 ⚡</i></small>
 
 </div>
+
+
+
+
