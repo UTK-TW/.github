@@ -1,9 +1,9 @@
 {
   "permissions": {
     "allow": [
-      "Bash(mkdir:*)",
       "Bash(pnpm lint:*)",
       "Bash(pnpm build:*)",
+      "Bash(pnpm generate:docs:*)",
       "Bash(git add:*)"
     ],
     "deny": [],
