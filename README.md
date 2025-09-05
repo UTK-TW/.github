@@ -32,15 +32,17 @@
 │   └── README.md                    # 組織簡介頁面
 ├── .github/
 │   ├── ISSUE_TEMPLATE/
-│   │   ├── bug_report.yml          # 錯誤回報模板
-│   │   ├── feature_request.yml     # 功能請求模板
-│   │   ├── question.yml            # 問題諮詢模板
-│   │   ├── documentation.yml       # 文件改進模板
+│   │   ├── bug_report.md           # 錯誤回報模板
+│   │   ├── feature_request.md      # 功能請求模板
+│   │   ├── question.md             # 問題諮詢模板
+│   │   ├── security_report.md      # 🔒 安全漏洞回報模板
+│   │   ├── performance_issue.md    # 🚀 效能問題回報模板
 │   │   └── config.yml              # Issue 模板設定
 │   ├── PULL_REQUEST_TEMPLATE/
 │   │   └── pull_request_template.md # Pull Request 模板
 │   ├── workflows/
-│   │   └── sync-labels.yml         # 標籤同步工作流程
+│   │   ├── sync-labels.yml         # 標籤同步工作流程
+│   │   └── issue-labeler.yml       # 🏷️ 自動標籤分類器
 │   └── labels.yml                  # 共用標籤定義
 ├── CONTRIBUTING.md                  # 貢獻指南
 ├── SUPPORT.md                      # 支援說明
@@ -81,6 +83,23 @@ cp LICENSE your-project/
 - 調整 Pull Request 模板的檢查項目  
 - 新增專案特定的標籤
 - 修改貢獻流程以符合專案需求
+
+## 🔥 新功能特色
+
+### 🔒 安全優先設計
+- **安全漏洞回報模板**: 專門處理安全問題的標準化流程
+- **自動優先級分類**: 根據關鍵字自動標記高風險議題
+- **私人安全通道**: 提供安全聯絡方式避免公開曝露
+
+### 🚀 效能監控系統
+- **效能問題追蹤**: 專門的效能問題回報模板
+- **指標收集**: 標準化的效能數據收集格式
+- **優化建議**: 內建常見效能優化策略參考
+
+### 🏷️ 智慧標籤系統
+- **自動標籤分配**: 基於議題標題和內容的智慧標籤系統
+- **多語言支援**: 支援中文和英文關鍵字識別
+- **優先級自動分級**: 根據緊急程度自動設定優先級
 
 ## 🛠️ 使用指南
 
