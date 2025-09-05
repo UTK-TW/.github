@@ -1,0 +1,88 @@
+name: 🔍 依賴性安全審查
+
+on:
+  pull_request:
+    branches: [main, develop]
+
+jobs:
+  dependency-review:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+    
+    steps:
+      - name: 🔍 檢查依賴性變更
+        uses: actions/dependency-review-action@v4
+        with:
+          # 配置依賴性審查參數
+          comment-summary-in-pr: always
+          fail-on-severity: moderate
+          allow-licenses: |
+            MIT
+            Apache-2.0
+            BSD-2-Clause
+            BSD-3-Clause
+            ISC
+            LGPL-2.1
+            LGPL-3.0
+          deny-licenses: |
+            GPL-2.0
+            GPL-3.0
+            AGPL-1.0
+            AGPL-3.0
+          
+      - name: 📊 生成依賴性報告
+        uses: actions/github-script@v7
+        if: always()
+        with:
+          script: |
+            const fs = require('fs');
+            const path = require('path');
+            
+            // 創建依賴性審查摘要
+            const summary = `## 🔍 依賴性安全審查報告
+            
+            ### 📋 審查結果
+            - ✅ 授權合規性檢查完成
+            - 🔒 安全漏洞掃描完成  
+            - 📦 依賴性變更分析完成
+            
+            ### 🛡️ 安全設定
+            - **失效等級**: Moderate 及以上
+            - **允許授權**: MIT, Apache-2.0, BSD-2/3-Clause, ISC, LGPL-2.1/3.0
+            - **禁止授權**: GPL-2.0/3.0, AGPL-1.0/3.0
+            
+            ### 💡 建議
+            - 定期更新依賴項目以獲得安全修補程式
+            - 避免使用已知有漏洞的套件版本
+            - 檢查新依賴項目的授權相容性
+            
+            ---
+            🤖 此報告由依賴性審查工作流程自動生成`;
+            
+            console.log('依賴性審查摘要已生成');
+            
+      - name: 🚨 通知安全問題
+        if: failure()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: `## ⚠️ 依賴性安全警告
+              
+              此 PR 的依賴性審查發現了安全問題或授權衝突。
+              
+              ### 📋 請檢查以下項目：
+              - 🔒 是否引入了已知安全漏洞
+              - ⚖️ 是否使用了不相容的授權條款
+              - 📦 是否可以升級到安全版本
+              
+              請在合併前解決這些問題。如需協助，請聯繫安全團隊。
+              
+              ---
+              🤖 此警告由安全審查系統自動生成`
+            })

@@ -1,0 +1,130 @@
+# 🤖 Dependabot 依賴性更新配置
+# 自動監控和更新專案依賴項，確保安全性和最新功能
+
+version: 2
+updates:
+  # .NET 專案依賴更新
+  - package-ecosystem: "nuget"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+      timezone: "Asia/Taipei"
+    open-pull-requests-limit: 5
+    reviewers:
+      - "Sen-CaPoo"
+    assignees:
+      - "Sen-CaPoo"
+    labels:
+      - "dependencies"
+      - "dotnet"
+      - "security"
+    commit-message:
+      prefix: "🔧"
+      include: "scope"
+
+  # Node.js 專案依賴更新
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly" 
+      day: "tuesday"
+      time: "09:00"
+      timezone: "Asia/Taipei"
+    open-pull-requests-limit: 5
+    reviewers:
+      - "Sen-CaPoo"
+    assignees:
+      - "Sen-CaPoo"
+    labels:
+      - "dependencies"
+      - "javascript"
+      - "frontend"
+    commit-message:
+      prefix: "📦"
+      include: "scope"
+
+  # Docker 依賴更新
+  - package-ecosystem: "docker"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "wednesday"
+      time: "09:00"
+      timezone: "Asia/Taipei"
+    open-pull-requests-limit: 3
+    reviewers:
+      - "Sen-CaPoo"
+    assignees:
+      - "Sen-CaPoo"
+    labels:
+      - "dependencies"
+      - "docker"
+      - "devops"
+    commit-message:
+      prefix: "🐳"
+      include: "scope"
+
+  # GitHub Actions 工作流程更新
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "monthly"
+      day: 1
+      time: "09:00"
+      timezone: "Asia/Taipei"
+    open-pull-requests-limit: 10
+    reviewers:
+      - "Sen-CaPoo"  
+    assignees:
+      - "Sen-CaPoo"
+    labels:
+      - "dependencies"
+      - "github-actions"
+      - "ci-cd"
+    commit-message:
+      prefix: "⚡"
+      include: "scope"
+
+  # Python 專案依賴更新
+  - package-ecosystem: "pip"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "thursday"
+      time: "09:00" 
+      timezone: "Asia/Taipei"
+    open-pull-requests-limit: 5
+    reviewers:
+      - "Sen-CaPoo"
+    assignees:
+      - "Sen-CaPoo"
+    labels:
+      - "dependencies"
+      - "python"
+      - "backend"
+    commit-message:
+      prefix: "🐍"
+      include: "scope"
+
+  # Go 專案依賴更新
+  - package-ecosystem: "gomod"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "friday"
+      time: "09:00"
+      timezone: "Asia/Taipei"
+    open-pull-requests-limit: 3
+    reviewers:
+      - "Sen-CaPoo"
+    assignees:
+      - "Sen-CaPoo"
+    labels:
+      - "dependencies"
+      - "go"
+      - "backend"
+    commit-message:
+      prefix: "🚀"
+      include: "scope"
