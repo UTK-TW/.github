@@ -1,0 +1,116 @@
+name: 🏷️ 自動標籤分類器
+
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  label-issues:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      contents: read
+    
+    steps:
+      - name: 🏷️ 根據議題類型自動添加標籤
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const issue = context.payload.issue;
+            const title = issue.title.toLowerCase();
+            const body = issue.body ? issue.body.toLowerCase() : '';
+            
+            let labels = [];
+            
+            // 根據標題前綴添加標籤
+            if (title.includes('[bug]') || title.includes('[security]')) {
+              labels.push('bug');
+            }
+            if (title.includes('[feature]') || title.includes('[enhancement]')) {
+              labels.push('enhancement');
+            }
+            if (title.includes('[performance]')) {
+              labels.push('performance', 'optimization');
+            }
+            if (title.includes('[security]')) {
+              labels.push('security', 'high-priority');
+            }
+            if (title.includes('[docs]') || title.includes('[documentation]')) {
+              labels.push('documentation');
+            }
+            
+            // 根據內容關鍵字添加標籤
+            if (body.includes('安全') || body.includes('漏洞') || body.includes('security')) {
+              labels.push('security');
+            }
+            if (body.includes('效能') || body.includes('performance') || body.includes('slow')) {
+              labels.push('performance');
+            }
+            if (body.includes('文檔') || body.includes('說明') || body.includes('documentation')) {
+              labels.push('documentation');
+            }
+            if (body.includes('api')) {
+              labels.push('api');
+            }
+            if (body.includes('ui') || body.includes('前端') || body.includes('frontend')) {
+              labels.push('frontend');
+            }
+            if (body.includes('backend') || body.includes('後端') || body.includes('server')) {
+              labels.push('backend');
+            }
+            
+            // 添加預設標籤
+            if (labels.length === 0) {
+              labels.push('needs-triage');
+            }
+            
+            // 去重
+            labels = [...new Set(labels)];
+            
+            if (labels.length > 0) {
+              await github.rest.issues.addLabels({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issue.number,
+                labels: labels
+              });
+              
+              console.log(`已為議題 #${issue.number} 添加標籤: ${labels.join(', ')}`);
+            }
+            
+      - name: 🎯 添加優先級標籤
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const issue = context.payload.issue;
+            const title = issue.title.toLowerCase();
+            const body = issue.body ? issue.body.toLowerCase() : '';
+            
+            let priorityLabels = [];
+            
+            // 高優先級關鍵字
+            if (title.includes('urgent') || title.includes('critical') || title.includes('緊急') ||
+                body.includes('urgent') || body.includes('critical') || body.includes('緊急')) {
+              priorityLabels.push('high-priority');
+            }
+            // 中優先級關鍵字
+            else if (title.includes('important') || title.includes('重要') ||
+                     body.includes('important') || body.includes('重要')) {
+              priorityLabels.push('medium-priority');
+            }
+            // 低優先級關鍵字
+            else if (title.includes('nice to have') || title.includes('建議') ||
+                     body.includes('nice to have') || body.includes('建議')) {
+              priorityLabels.push('low-priority');
+            }
+            
+            if (priorityLabels.length > 0) {
+              await github.rest.issues.addLabels({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issue.number,
+                labels: priorityLabels
+              });
+              
+              console.log(`已為議題 #${issue.number} 添加優先級標籤: ${priorityLabels.join(', ')}`);
+            }
