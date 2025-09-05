@@ -1,0 +1,196 @@
+name: 🤖 Pull Request 自動化處理
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
+  pull_request_review:
+    types: [submitted]
+
+jobs:
+  pr-labeler:
+    name: 🏷️ PR 自動標籤
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+      contents: read
+    
+    steps:
+      - name: 🏷️ 根據 PR 內容自動添加標籤
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const pr = context.payload.pull_request;
+            const title = pr.title.toLowerCase();
+            const body = pr.body ? pr.body.toLowerCase() : '';
+            
+            let labels = [];
+            
+            // 根據標題和內容添加標籤
+            if (title.includes('🐛') || title.includes('bug') || title.includes('fix')) {
+              labels.push('bug');
+            }
+            if (title.includes('✨') || title.includes('feat') || title.includes('feature')) {
+              labels.push('enhancement');
+            }
+            if (title.includes('📚') || title.includes('docs') || title.includes('documentation')) {
+              labels.push('documentation');
+            }
+            if (title.includes('🔒') || title.includes('security') || body.includes('security')) {
+              labels.push('security');
+            }
+            if (title.includes('📈') || title.includes('performance') || body.includes('performance')) {
+              labels.push('performance');
+            }
+            if (title.includes('🧪') || title.includes('test') || body.includes('test')) {
+              labels.push('test');
+            }
+            if (title.includes('🎨') || title.includes('style') || body.includes('style')) {
+              labels.push('style');
+            }
+            if (title.includes('🔧') || title.includes('refactor') || body.includes('refactor')) {
+              labels.push('refactor');
+            }
+            
+            // 根據檔案變更添加技術標籤
+            const files = await github.rest.pulls.listFiles({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: pr.number
+            });
+            
+            const changedFiles = files.data.map(file => file.filename.toLowerCase());
+            
+            if (changedFiles.some(file => file.includes('.cs') || file.includes('.csproj'))) {
+              labels.push('dotnet');
+            }
+            if (changedFiles.some(file => file.includes('.js') || file.includes('.ts') || file.includes('.jsx') || file.includes('.tsx'))) {
+              labels.push('frontend');
+            }
+            if (changedFiles.some(file => file.includes('.sql') || file.includes('migration'))) {
+              labels.push('database');
+            }
+            if (changedFiles.some(file => file.includes('.yml') || file.includes('.yaml') || file.includes('dockerfile'))) {
+              labels.push('devops');
+            }
+            if (changedFiles.some(file => file.includes('.md') || file.includes('readme'))) {
+              labels.push('documentation');
+            }
+            
+            // 根據變更大小添加標籤
+            const additions = pr.additions;
+            const deletions = pr.deletions;
+            const totalChanges = additions + deletions;
+            
+            if (totalChanges < 10) {
+              labels.push('size/XS');
+            } else if (totalChanges < 30) {
+              labels.push('size/S');
+            } else if (totalChanges < 100) {
+              labels.push('size/M');
+            } else if (totalChanges < 500) {
+              labels.push('size/L');
+            } else {
+              labels.push('size/XL');
+            }
+            
+            // 去重
+            labels = [...new Set(labels)];
+            
+            if (labels.length > 0) {
+              await github.rest.issues.addLabels({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: pr.number,
+                labels: labels
+              });
+              
+              console.log(`已為 PR #${pr.number} 添加標籤: ${labels.join(', ')}`);
+            }
+            
+  pr-size-checker:
+    name: 📏 PR 大小檢查
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+      contents: read
+      
+    steps:
+      - name: 📏 檢查 PR 大小並添加評論
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const pr = context.payload.pull_request;
+            const additions = pr.additions;
+            const deletions = pr.deletions;
+            const totalChanges = additions + deletions;
+            
+            let sizeComment = '';
+            let reviewSuggestion = '';
+            
+            if (totalChanges > 500) {
+              sizeComment = `## 📊 PR 大小分析\n\n這個 PR 包含 **${totalChanges}** 行變更（+${additions}/-${deletions}），屬於大型 PR。\n\n`;
+              reviewSuggestion = `### 🔍 審查建議\n- 考慮將大型 PR 拆分成多個較小的 PR\n- 增加更詳細的說明和測試\n- 可能需要額外的審查時間\n\n`;
+            } else if (totalChanges > 100) {
+              sizeComment = `## 📊 PR 大小分析\n\n這個 PR 包含 **${totalChanges}** 行變更（+${additions}/-${deletions}），屬於中型 PR。\n\n`;
+              reviewSuggestion = `### 🔍 審查建議\n- 確保測試覆蓋充足\n- 檢查是否需要文檔更新\n\n`;
+            } else {
+              sizeComment = `## 📊 PR 大小分析\n\n這個 PR 包含 **${totalChanges}** 行變更（+${additions}/-${deletions}），大小適中，便於審查。\n\n`;
+            }
+            
+            const comment = sizeComment + reviewSuggestion + `---\n🤖 此評論由 GitHub Actions 自動生成`;
+            
+            // 只為新 PR 或變更較大的 PR 添加評論
+            if (context.payload.action === 'opened' && totalChanges > 50) {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: pr.number,
+                body: comment
+              });
+            }
+            
+  pr-checklist:
+    name: ✅ PR 檢查清單驗證
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+      contents: read
+      
+    steps:
+      - name: ✅ 驗證 PR 檢查清單完成度
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const pr = context.payload.pull_request;
+            const body = pr.body || '';
+            
+            // 計算勾選的檢查項目
+            const checkboxes = body.match(/- \[[x ]\]/g) || [];
+            const checkedBoxes = body.match(/- \[x\]/gi) || [];
+            
+            if (checkboxes.length > 0) {
+              const completionRate = (checkedBoxes.length / checkboxes.length * 100).toFixed(1);
+              
+              const statusComment = `## ✅ PR 檢查清單狀態\n\n` +
+                `**完成度**: ${checkedBoxes.length}/${checkboxes.length} (${completionRate}%)\n\n` +
+                `${'▓'.repeat(Math.floor(completionRate / 10))}${'░'.repeat(10 - Math.floor(completionRate / 10))} ${completionRate}%\n\n`;
+              
+              let reminder = '';
+              if (completionRate < 80) {
+                reminder = `### 🚨 提醒\n請完成 PR 模板中的檢查清單項目，以確保程式碼品質和加快審查流程。\n\n`;
+              } else if (completionRate === 100) {
+                reminder = `### 🎉 太棒了！\n所有檢查清單項目都已完成，PR 已準備好進行審查！\n\n`;
+              }
+              
+              const comment = statusComment + reminder + `---\n🤖 此評論由 GitHub Actions 自動生成`;
+              
+              // 為檢查清單完成度較低的 PR 添加提醒
+              if (context.payload.action === 'opened' && completionRate < 80) {
+                await github.rest.issues.createComment({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: pr.number,
+                  body: comment
+                });
+              }
+            }
