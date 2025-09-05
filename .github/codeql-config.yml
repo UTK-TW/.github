@@ -1,0 +1,74 @@
+# 🔍 CodeQL 分析配置檔案
+
+name: "UTK CodeQL Configuration"
+
+# 指定要掃描的路徑
+paths:
+  - src/
+  - lib/
+  - app/
+  - api/
+  - services/
+  - controllers/
+  - models/
+  - utils/
+  - helpers/
+
+# 排除不需要掃描的路徑  
+paths-ignore:
+  - node_modules/
+  - vendor/
+  - bin/
+  - obj/
+  - dist/
+  - build/
+  - target/
+  - .git/
+  - "**/*.min.js"
+  - "**/*.min.css"
+  - "**/*.bundle.js"
+  - "**/jquery*.js"
+  - "**/bootstrap*.js"
+  - "**/*.d.ts"
+  - "**/migrations/"
+  - "**/seeds/"
+  - "**/__tests__/"
+  - "**/*.test.js"
+  - "**/*.spec.js"
+
+# 停用預設查詢包
+disable-default-queries: false
+
+# 自訂查詢包
+queries:
+  - name: security-extended
+    uses: security-extended
+  - name: security-and-quality
+    uses: security-and-quality
+
+# 查詢過濾器配置
+query-filters:
+  - exclude:
+      id: 
+        - "js/missing-rate-limiting"
+        - "js/clear-text-logging"
+      # 排除測試檔案的某些規則
+  - include:
+      severity: 
+        - "error"
+        - "warning"
+
+# 編譯器配置
+packs:
+  javascript:
+    - "codeql/javascript-queries"
+    - "codeql/javascript-security-queries"
+  python:
+    - "codeql/python-queries" 
+    - "codeql/python-security-queries"
+  csharp:
+    - "codeql/csharp-queries"
+    - "codeql/csharp-security-queries"
+  go:
+    - "codeql/go-queries"
+    - "codeql/go-security-queries"
