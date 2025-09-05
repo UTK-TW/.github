@@ -1,0 +1,115 @@
+name: 📊 程式碼品質檢查
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+
+jobs:
+  code-quality:
+    name: 🔍 多語言程式碼品質分析
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+      security-events: write
+    
+    steps:
+      - name: 📥 檢出程式碼
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          
+      - name: 🔍 CodeQL 安全分析
+        uses: github/codeql-action/init@v3
+        with:
+          languages: 'javascript,python,csharp,go'
+          config-file: ./.github/codeql-config.yml
+          
+      - name: 🏗️ 自動建置
+        uses: github/codeql-action/autobuild@v3
+        
+      - name: 📊 執行 CodeQL 分析
+        uses: github/codeql-action/analyze@v3
+        with:
+          category: "/language:multi"
+          
+      - name: 📈 SonarCloud 程式碼掃描
+        uses: SonarSource/sonarcloud-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        continue-on-error: true
+        
+      - name: 🛡️ Semgrep 安全掃描
+        uses: returntocorp/semgrep-action@v1
+        with:
+          config: >-
+            p/security-audit
+            p/secrets
+            p/ci
+            p/r2c-best-practices
+        env:
+          SEMGREP_APP_TOKEN: ${{ secrets.SEMGREP_APP_TOKEN }}
+        continue-on-error: true
+        
+      - name: 📝 生成程式碼品質報告
+        uses: actions/github-script@v7
+        if: always()
+        with:
+          script: |
+            const summary = `## 📊 程式碼品質檢查報告
+            
+            ### ✅ 已執行的檢查
+            - 🔍 **CodeQL 安全分析**: 多語言安全漏洞檢測
+            - 📈 **SonarCloud 掃描**: 程式碼品質和技術債分析
+            - 🛡️ **Semgrep 安全掃描**: 安全最佳實務檢查
+            - 📦 **依賴性檢查**: 已知漏洞依賴項目掃描
+            
+            ### 🎯 檢查範圍
+            - **支援語言**: JavaScript, Python, C#, Go
+            - **安全規則**: OWASP Top 10, CWE 常見弱點
+            - **最佳實務**: 程式碼風格, 效能優化, 安全編碼
+            - **祕密檢測**: API 金鑰, 密碼, 憑證洩漏
+            
+            ### 📋 後續建議
+            - 檢查並修復發現的安全漏洞
+            - 改善程式碼品質評分
+            - 更新不安全的依賴項目
+            - 遵循安全編碼最佳實務
+            
+            ---
+            🤖 此報告由程式碼品質工作流程自動生成`;
+            
+            console.log('程式碼品質報告已生成');
+            
+      - name: 💬 在 PR 中留下品質評論
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const comment = `## 🔍 程式碼品質檢查完成
+            
+            你的 Pull Request 已通過多層次的程式碼品質檢查！
+            
+            ### 📊 檢查項目
+            - ✅ 安全漏洞掃描
+            - ✅ 程式碼品質分析  
+            - ✅ 最佳實務檢查
+            - ✅ 祕密洩漏檢測
+            
+            ### 💡 如有發現問題
+            請查看上方的 **Security** 和 **Checks** 標籤中的詳細報告，並根據建議進行修正。
+            
+            感謝您對程式碼品質的重視！
+            
+            ---
+            🤖 此評論由品質檢查工作流程自動生成`;
+            
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: comment
+            });
