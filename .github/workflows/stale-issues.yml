@@ -1,0 +1,102 @@
+name: 🕐 自動處理過期議題和 PR
+
+on:
+  schedule:
+    - cron: '0 0 * * *'  # 每天午夜執行
+  workflow_dispatch:  # 允許手動觸發
+
+jobs:
+  stale:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      pull-requests: write
+    
+    steps:
+      - name: 🕐 標記和關閉過期議題與 PR
+        uses: actions/stale@v9
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          
+          # 議題設定
+          stale-issue-message: |
+            ## 🕐 此議題已被標記為過期
+            
+            這個議題已經 **60 天** 沒有任何活動，將被標記為過期。
+            
+            ### 📋 如果此議題仍然相關：
+            - 💬 請回覆此議題說明目前狀況
+            - 🔄 提供更新的資訊或進度
+            - 📝 添加更多相關細節
+            
+            ### ⏰ 自動關閉通知
+            如果再過 **14 天** 仍無活動，此議題將被自動關閉。
+            
+            ---
+            🤖 此訊息由自動化系統產生
+            
+          close-issue-message: |
+            ## 🔒 此議題因長期無活動已自動關閉
+            
+            此議題已經 **74 天** 沒有活動，現已自動關閉。
+            
+            ### 📋 如需重新開啟：
+            - 🔄 如果問題仍然存在，請建立新的議題
+            - 📝 提供最新的重現步驟和環境資訊
+            - 🔗 可以參考此關閉的議題作為背景資料
+            
+            感謝您的理解與配合！
+            
+            ---
+            🤖 此訊息由自動化系統產生
+          
+          # PR 設定  
+          stale-pr-message: |
+            ## 🕐 此 Pull Request 已被標記為過期
+            
+            這個 PR 已經 **30 天** 沒有任何活動，將被標記為過期。
+            
+            ### 📋 如果此 PR 仍需要合併：
+            - 💬 請回覆說明 PR 的當前狀態
+            - 🔄 解決任何合併衝突
+            - 📝 更新 PR 描述或相關文檔
+            - 🧪 確認測試通過
+            
+            ### ⏰ 自動關閉通知
+            如果再過 **7 天** 仍無活動，此 PR 將被自動關閉。
+            
+            ---
+            🤖 此訊息由自動化系統產生
+          
+          close-pr-message: |
+            ## 🔒 此 PR 因長期無活動已自動關閉
+            
+            此 PR 已經 **37 天** 沒有活動，現已自動關閉。
+            
+            ### 📋 如需重新提交：
+            - 🔄 請建立新的 PR
+            - 📝 確保程式碼是最新的
+            - 🧪 驗證所有測試通過
+            - 🔗 可以參考此關閉的 PR 作為參考
+            
+            感謝您的貢獻！
+            
+            ---
+            🤖 此訊息由自動化系統產生
+          
+          # 設定天數
+          days-before-issue-stale: 60
+          days-before-pr-stale: 30
+          days-before-issue-close: 14
+          days-before-pr-close: 7
+          
+          # 標籤設定
+          stale-issue-label: 'stale'
+          stale-pr-label: 'stale'
+          exempt-issue-labels: 'pinned,security,enhancement'
+          exempt-pr-labels: 'pinned,security,work-in-progress'
+          
+          # 其他設定
+          ascending: true
+          remove-stale-when-updated: true
+          debug-only: false
