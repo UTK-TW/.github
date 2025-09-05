@@ -1,0 +1,12 @@
+name: 🌐 多語言支援請求
+description: 請求新增或改進多語言功能
+labels: [i18n, enhancement]
+body:
+  - type: dropdown
+    attributes:
+      label: 目標語言
+      options:
+        - 繁體中文 (zh-TW)
+        - 簡體中文 (zh-CN)
+        - 英文 (en-US)
+        - 日文 (ja-JP)
