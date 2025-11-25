@@ -1,46 +1,41 @@
-# 環友科技股份有限公司 | UTK Technology Corporation
+# 環友科技股份有限公司
 
 <div align="center">
 
-[![UTK Technology](https://www.utk.com.tw/Content/images/logo_blue.svg)](https://www.utk.com.tw/)
+[![UTK Technology](./images/logo_blue.svg)](https://www.utk.com.tw/)
 
-## 企業數位轉型的可靠夥伴 | Your Trusted Partner in Digital Transformation
+## 企業數位轉型的可靠夥伴
 
-**透過創新技術與專業服務，加速您的數位轉型之旅，提升營運效率與市場競爭力**
+**透過創新技術與專業服務，加速數位轉型之旅，提升營運效率與市場競爭力**
 
 [![Microsoft Partner](https://img.shields.io/badge/Microsoft-Gold_Partner-FFB900?style=for-the-badge&logo=microsoft&logoColor=white)](https://www.utk.com.tw/)
 [![Azure Certified](https://img.shields.io/badge/Azure-Solution_Partner-0078D4?style=for-the-badge&logo=microsoft-azure&logoColor=white)](https://www.utk.com.tw/)
 [![ASP.NET Core](https://img.shields.io/badge/ASP.NET_Core_8-512BD4?style=for-the-badge&logo=dotnet&logoColor=white)](https://www.utk.com.tw/)
 
-### 🏆 **Proven Results | 實績證明**
+</div>
+
+---
+
+## 🎯 公司實績
+
+<div align="center">
+
 | **50+** 企業客戶 | **100+** 成功專案 | **99.9%** 系統可用性 | **10+** 專業團隊 |
 |:-:|:-:|:-:|:-:|
-
-[![立即諮詢](https://img.shields.io/badge/🚀_立即開始數位轉型-contact@utk.com.tw-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:contact@utk.com.tw)
-[![查看案例](https://img.shields.io/badge/📊_查看成功案例-www.utk.com.tw-0078D4?style=for-the-badge&logo=microsoft-edge&logoColor=white)](https://www.utk.com.tw/)
 
 </div>
 
 ---
 
-## 🚀 **Core Services | 核心服務**
-
-<div align="center">
-
-### **為什麼選擇UTK？| Why Choose UTK Technology?**
-
-**我們不只是技術服務商，更是您數位轉型路上的策略夥伴**
-
-</div>
+## 🚀 核心服務項目
 
 <table>
 <tr>
 <td width="50%">
 
-### **🌐 企業級Web應用系統**
-**助您建立高效、安全、可擴展的企業應用**
+### 🌐 企業級 Web 應用系統
 
-**商業價值：**
+**核心優勢：**
 - ⚡ 提升營運效率 30-50%
 - 🛡️ 企業級安全與合規
 - 📱 跨平台無縫體驗
@@ -52,11 +47,10 @@
 </td>
 <td width="50%">
 
-### **⚡ API服務與微服務架構**
-**構建靈活、高性能的現代化系統架構**
+### ⚡ API 服務與微服務架構
 
-**商業價值：**
-- 📈 系統擴展性提升 200%
+**核心優勢：**
+- 📈 系統延展性提升 200%
 - 🔧 維護成本降低 40%
 - 🚀 上市時間縮短 50%
 - 🔗 輕鬆整合第三方服務
@@ -69,10 +63,9 @@
 <tr>
 <td>
 
-### **☁️ 雲端基礎設施與DevOps**
-**加速部署，確保系統穩定與安全**
+### ☁️ 雲端基礎設施與 DevOps
 
-**商業價值：**
+**核心優勢：**
 - ⏱️ 部署時間從天縮短至分鐘
 - 💰 基礎設施成本節省 30%
 - 🎯 99.9% 服務可用性保證
@@ -84,14 +77,13 @@
 </td>
 <td>
 
-### **🗄️ 數據管理與分析解決方案**
-**讓數據成為您的競爭優勢**
+### 🗄️ 資料管理與分析解決方案
 
-**商業價值：**
-- 📊 數據驅動決策支持
+**核心優勢：**
+- 📊 資料驅動決策支持
 - 🔍 客戶洞察與行為分析
 - 📈 業務預測準確度提升
-- 🛡️ 數據安全與合規保護
+- 🛡️ 資料安全與合規保護
 
 [![SQL Server](https://img.shields.io/badge/SQL_Server_2022-CC2927?style=flat-square&logo=microsoft-sql-server&logoColor=white)](https://www.utk.com.tw/)
 [![Azure SQL](https://img.shields.io/badge/Azure_SQL-0078D4?style=flat-square&logo=microsoft-azure&logoColor=white)](https://www.utk.com.tw/)
@@ -102,59 +94,56 @@
 
 ---
 
-## 🌟 **Why UTK? | 為什麼選擇我們**
-
-<div align="center">
-
-### **🏆 客戶成功就是我們的成功 | Your Success is Our Success**
-
-</div>
+##  企業優勢
 
 <table>
 <tr>
 <td align="center" width="25%">
-<h3>🎯 <strong>專案成功率　</strong></h3>
+<h3>🎯 <strong>專案成功率</strong></h3>
 <h2><strong>98%+</strong></h2>
-<p>準時交付，品質保證</p>
+<p>準時交付、品質保證</p>
 </td>
 <td align="center" width="25%">
-<h3>⚡ <strong>平均效能提升</strong></h3>
+<h3>⚡ <strong>效能提升</strong></h3>
 <h2><strong>40%</strong></h2>
-<p>系統效能　顯著改善</p>
+<p>系統效能顯著改善</p>
 </td>
 <td align="center" width="25%">
-<h3>🛡️ <strong>　安全事件　</strong></h3>
+<h3>🛡️ <strong>安全記錄</strong></h3>
 <h2><strong>0</strong></h2>
-<p>　零重大安全漏洞　</p>
+<p>零重大安全漏洞</p>
 </td>
 <td align="center" width="25%">
-<h3>📞 <strong>　技術支援　</strong></h3>
+<h3>📞 <strong>技術支援</strong></h3>
 <h2><strong>24/7</strong></h2>
-<p>　全天候專業支援　</p>
+<p>全天候專業支援</p>
 </td>
 </tr>
 </table>
 
-### **🤝 信賴夥伴 | Trusted Partnerships**
+### 🤝 合作夥伴
+
+<div align="center">
 
 [![Microsoft Gold Partner](https://img.shields.io/badge/Microsoft-Gold_Partner-FFB900?style=for-the-badge&logo=microsoft&logoColor=white)](https://www.utk.com.tw/)
 [![Azure Solution Partner](https://img.shields.io/badge/Azure-Solution_Partner-0078D4?style=for-the-badge&logo=microsoft-azure&logoColor=white)](https://www.utk.com.tw/)
 [![GitHub Organization](https://img.shields.io/badge/GitHub-UTK--TW-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/UTK-TW)
 
-### **⚡ 服務承諾 | Service Commitment**
+### ⚡ 服務回應時間
 
 [![一般查詢 24H](https://img.shields.io/badge/一般查詢-24小時內回覆-28A745?style=flat-square&logo=clock&logoColor=white)](#)
 [![技術支援 4H](https://img.shields.io/badge/技術支援-4小時內回覆-FF6B35?style=flat-square&logo=tools&logoColor=white)](#)
 [![緊急問題 2H](https://img.shields.io/badge/緊急問題-2小時內回覆-DC3545?style=flat-square&logo=alert&logoColor=white)](#)
 
+</div>
+
 ---
 
-## 🛠️ **Our Approach | 我們的方法**
+## 🛠️ 工作流程
 
 <div align="center">
 
-### **🎯 以結果為導向的軟體工程方法論**
-**結合敏捷開發與企業治理，確保專案成功交付**
+### 以結果為導向的軟體工程方法論
 
 </div>
 
@@ -207,7 +196,7 @@
 </tr>
 </table>
 
-### **🏆 品質保證標準 | Quality Assurance Standards**
+### 🏆 品質保證標準
 
 <div align="center">
 
@@ -223,13 +212,11 @@
 
 ---
 
-## 🎖️ **Professional Excellence | 專業認證與能力**
+## 🎖️ 專業認證與能力
 
 <div align="center">
 
-### **🏅 核心專業認證 | Key Professional Certifications**
-
-**我們的專業團隊擁有業界頂尖認證，確保服務品質與技術領先性**
+### 核心專業認證
 
 </div>
 
@@ -260,7 +247,7 @@
 </tr>
 </table>
 
-### **💼 團隊專業能力 | Team Expertise**
+### 💼 團隊專業能力
 
 <div align="center">
 
@@ -276,13 +263,11 @@
 
 ---
 
-## 🚀 **Get Started | 開始合作**
+## 🚀 聯絡我們
 
 <div align="center">
 
-### **📞 立即聯繫，開啟您的數位轉型之路**
-
-**我們提供免費初步諮詢，協助您評估專案需求與最適合的解決方案**
+### 即刻聯繫，開啟數位轉型之路
 
 </div>
 
@@ -290,15 +275,13 @@
 <tr>
 <td width="50%">
 
-### **🏢 企業聯絡資訊**
+### 🏢 企業資訊
 
 **📍 總公司地址**  
-台北市內湖區新湖二路172號3樓  
-3F, No.172, Xinhu 2nd Rd., Neihu Dist., Taipei City 114065, Taiwan  
+台北市內湖區新湖二路 172 號 3 樓  
 
 **🕒 營業時間**  
 週一至週五：09:00 - 18:00 (GMT+8)  
-Monday - Friday: 09:00 - 18:00 (GMT+8)  
 
 **📧 聯繫方式**  
 [![Email](https://img.shields.io/badge/_商務合作-sen@utk.com.tw-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:sen@utk.com.tw)  
@@ -307,27 +290,22 @@ Monday - Friday: 09:00 - 18:00 (GMT+8)
 </td>
 <td width="50%">
 
-### **⚡ 快速回應承諾**
+### ⚡ 回應時間
 
-我們承諾以下回應時間：
+🟢 **一般業務查詢**：24 小時內回覆  
+🟡 **技術支援需求**：4 小時內回覆  
+🔴 **緊急技術問題**：2 小時內回覆  
 
-🟢 **一般業務查詢**: 24小時內回覆  
-🟡 **技術支援需求**: 4小時內回覆  
-🔴 **緊急技術問題**: 2小時內回覆  
+### 🤝 專業社群
 
-### **🤝 專業社群**
-
-[![Official Website](https://img.shields.io/badge/🌐_官方網站-www.utk.com.tw-0078D4?style=for-the-badge&logo=microsoft-edge&logoColor=white)](https://www.utk.com.tw/)
+[![官方網站](https://img.shields.io/badge/🌐_官方網站-www.utk.com.tw-0078D4?style=for-the-badge&logo=microsoft-edge&logoColor=white)](https://www.utk.com.tw/)
 [![GitHub](https://img.shields.io/badge/GitHub-UTK--TW-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/UTK-TW)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-UTK_Technology-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/company/utk-technology)
-
-
-
 </td>
 </tr>
 </table>
 
-### **📋 服務諮詢流程 | Consultation Process**
+### 📋 諮詢流程
 
 <div align="center">
 
@@ -342,9 +320,9 @@ Monday - Friday: 09:00 - 18:00 (GMT+8)
 
 ---
 
-## 🔧 **技術細節與完整資訊 | Technical Details**
+## 🔧 技術堆疊詳細資訊
 
-### 🏗️ **Backend Development | 後端開發**
+### � 後端開發
 
 [![.NET 8](https://img.shields.io/badge/.NET_8-512BD4?style=flat-square&logo=dotnet&logoColor=white)](https://dotnet.microsoft.com/)
 [![C# 12](https://img.shields.io/badge/C%23_12-239120?style=flat-square&logo=c-sharp&logoColor=white)](https://docs.microsoft.com/en-us/dotnet/csharp/)
@@ -354,21 +332,21 @@ Monday - Friday: 09:00 - 18:00 (GMT+8)
 [![MVC & Razor Pages](https://img.shields.io/badge/MVC_&_Razor_Pages-512BD4?style=flat-square&logo=dotnet&logoColor=white)](https://docs.microsoft.com/en-us/aspnet/mvc/)
 [![Minimal APIs](https://img.shields.io/badge/Minimal_APIs-512BD4?style=flat-square&logo=dotnet&logoColor=white)](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis)
 
-### 🎨 **Frontend & Web Technologies | 前端與網頁技術**
+### 🎨 前端與網頁技術
 
 [![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/HTML)
 [![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/CSS)
 [![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 [![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 
-### 🗄️ **Database & Data Management | 資料庫與資料管理**
+### 🗄️ 資料庫與資料管理
 
 [![SQL Server 2022](https://img.shields.io/badge/SQL_Server_2022-CC2927?style=flat-square&logo=microsoft-sql-server&logoColor=white)](https://www.microsoft.com/en-us/sql-server)
 [![Azure SQL Database](https://img.shields.io/badge/Azure_SQL-0078D4?style=flat-square&logo=microsoft-azure&logoColor=white)](https://azure.microsoft.com/en-us/services/sql-database/)
 [![Redis](https://img.shields.io/badge/Redis-DC382D?style=flat-square&logo=redis&logoColor=white)](https://redis.io/)
 [![Azure Cosmos DB](https://img.shields.io/badge/Cosmos_DB-0078D4?style=flat-square&logo=microsoft-azure&logoColor=white)](https://azure.microsoft.com/en-us/services/cosmos-db/)
 
-### ☁️ **Cloud Infrastructure | 雲端基礎設施**
+### ☁️ 雲端基礎設施
 
 [![Microsoft Azure](https://img.shields.io/badge/Microsoft_Azure-0078D4?style=flat-square&logo=microsoft-azure&logoColor=white)](https://azure.microsoft.com/)
 [![Azure Container Apps](https://img.shields.io/badge/Container_Apps-0078D4?style=flat-square&logo=microsoft-azure&logoColor=white)](https://azure.microsoft.com/en-us/services/container-apps/)
@@ -377,7 +355,7 @@ Monday - Friday: 09:00 - 18:00 (GMT+8)
 [![Azure Logic Apps](https://img.shields.io/badge/Logic_Apps-0078D4?style=flat-square&logo=microsoft-azure&logoColor=white)](https://azure.microsoft.com/en-us/services/logic-apps/)
 [![Azure Service Bus](https://img.shields.io/badge/Service_Bus-0078D4?style=flat-square&logo=microsoft-azure&logoColor=white)](https://azure.microsoft.com/en-us/services/service-bus/)
 
-### 🔄 **DevOps & CI/CD | 開發營運與自動化**
+### 🔄 DevOps 與自動化
 
 [![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker&logoColor=white)](https://www.docker.com/)
 [![Kubernetes](https://img.shields.io/badge/Kubernetes-326CE5?style=flat-square&logo=kubernetes&logoColor=white)](https://kubernetes.io/)
@@ -385,7 +363,7 @@ Monday - Friday: 09:00 - 18:00 (GMT+8)
 [![Azure DevOps](https://img.shields.io/badge/Azure_DevOps-0078D7?style=flat-square&logo=azure-devops&logoColor=white)](https://dev.azure.com/)
 [![Terraform](https://img.shields.io/badge/Terraform-623CE4?style=flat-square&logo=terraform&logoColor=white)](https://www.terraform.io/)
 
-### 🔧 **Development Tools | 開發工具**
+### 🔧 開發工具
 
 [![Visual Studio 2022](https://img.shields.io/badge/Visual_Studio_2022-5C2D91?style=flat-square&logo=visual-studio&logoColor=white)](https://visualstudio.microsoft.com/)
 [![VS Code](https://img.shields.io/badge/VS_Code-007ACC?style=flat-square&logo=visual-studio-code&logoColor=white)](https://code.visualstudio.com/)
@@ -395,7 +373,7 @@ Monday - Friday: 09:00 - 18:00 (GMT+8)
 [![Postman](https://img.shields.io/badge/Postman-FF6C37?style=flat-square&logo=postman&logoColor=white)](https://www.postman.com/)
 [![Azure Data Studio](https://img.shields.io/badge/Azure_Data_Studio-0078D4?style=flat-square&logo=microsoft-azure&logoColor=white)](https://docs.microsoft.com/en-us/sql/azure-data-studio/)
 
-### 🧪 **Testing & Quality Assurance | 測試與品質保證**
+### 🧪 測試與品質保證
 
 [![xUnit](https://img.shields.io/badge/xUnit-512BD4?style=flat-square&logo=dotnet&logoColor=white)](https://xunit.net/)
 [![NUnit](https://img.shields.io/badge/NUnit-25A162?style=flat-square&logo=nunit&logoColor=white)](https://nunit.org/)
@@ -408,7 +386,7 @@ Monday - Friday: 09:00 - 18:00 (GMT+8)
 
 ---
 
-## 🏆 **Complete Professional Certifications | 完整專業認證**
+## 🏆 完整專業認證清單
 
 ### **Microsoft Technologies**
 [![Azure Fundamentals](https://img.shields.io/badge/Azure_Fundamentals-AZ--900-0078D4?style=flat-square&logo=microsoft-azure&logoColor=white)](https://learn.microsoft.com/en-us/certifications/azure-fundamentals/)
@@ -447,17 +425,17 @@ Monday - Friday: 09:00 - 18:00 (GMT+8)
 
 ---
 
-## 📋 **Project Types & Service Categories | 專案類型與服務分類**
+## 📋 專案類型與服務分類
 
 <table>
 <tr>
 <td align="center" width="20%">
-  🌐<br><strong>企業Web應用</strong>
+  🌐<br><strong>企業 Web 應用</strong>
   <br><small>ASP.NET Core MVC/Razor Pages</small>
 </td>
 <td align="center" width="20%">
-  ⚡<br><strong>API服務</strong>
-  <br><small>RESTful API與微服務</small>
+  ⚡<br><strong>API 服務</strong>
+  <br><small>RESTful API 與微服務</small>
 </td>
 <td align="center" width="20%">
   🔧<br><strong>自動化工具</strong>
@@ -478,18 +456,18 @@ Monday - Friday: 09:00 - 18:00 (GMT+8)
 
 <div align="center">
 
-### **🌟 企業願景與使命 | Vision & Mission**
+### 🌟 企業願景與使命
 
-**🎯 企業使命**: 透過卓越的軟體工程技術與專業諮詢服務，協助企業實現數位化目標，提升營運效率與競爭優勢
+**🎯 企業使命**：透過卓越的軟體工程技術與專業諮詢服務，協助企業實現數位化目標，提升營運效率與競爭優勢
 
-**🌟 企業願景**: 成為台灣領先的企業級軟體解決方案提供商，以創新技術驅動數位轉型
+**🌟 企業願景**：成為台灣領先的企業級軟體解決方案提供商，以創新技術驅動數位轉型
 
-### **🎖️ 核心價值觀 | Core Values**
+### 🎖️ 核心價值觀
 
-[![Innovation](https://img.shields.io/badge/創新驅動-Innovation_Driven-FF6B35?style=flat-square&logo=lightbulb&logoColor=white)](#)
-[![Quality](https://img.shields.io/badge/品質第一-Quality_First-28A745?style=flat-square&logo=verified&logoColor=white)](#)
-[![Collaboration](https://img.shields.io/badge/團隊合作-Team_Collaboration-17A2B8?style=flat-square&logo=users&logoColor=white)](#)
-[![Excellence](https://img.shields.io/badge/追求卓越-Pursuit_of_Excellence-6F42C1?style=flat-square&logo=trophy&logoColor=white)](#)
+[![創新驅動](https://img.shields.io/badge/創新驅動-Innovation-FF6B35?style=flat-square&logo=lightbulb&logoColor=white)](#)
+[![品質第一](https://img.shields.io/badge/品質第一-Quality-28A745?style=flat-square&logo=verified&logoColor=white)](#)
+[![團隊合作](https://img.shields.io/badge/團隊合作-Teamwork-17A2B8?style=flat-square&logo=users&logoColor=white)](#)
+[![追求卓越](https://img.shields.io/badge/追求卓越-Excellence-6F42C1?style=flat-square&logo=trophy&logoColor=white)](#)
 
 ---
 
@@ -499,7 +477,7 @@ Monday - Friday: 09:00 - 18:00 (GMT+8)
 
 ---
 
-<small><i>⚡ Professional Excellence in Software Development | 軟體開發專業卓越 ⚡</i></small>
+<small><i>⚡ 軟體開發專業卓越 | Professional Excellence in Software Development ⚡</i></small>
 
 </div>
 
