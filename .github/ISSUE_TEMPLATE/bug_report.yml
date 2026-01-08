@@ -1,0 +1,90 @@
+name: 🐞 魔物目擊報告書 (Bug Report)
+description: 發現 Bug 了嗎？請詳細描述這隻魔物的特徵，協助公會進行討伐。
+title: "[Bug]: <請輸入 Bug 簡述>"
+labels: ["Status: 待辦事項", "Type: Bug", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        # 🐉 魔物目擊情報 (Monster Sighting)
+        感謝您的通報！為了讓負責討伐的工程師能快速鎖定目標，請盡可能詳細填寫以下情報。
+        *模糊的情報會導致討伐失敗！*
+
+  - type: textarea
+    id: description
+    attributes:
+      label: 👹 魔物特徵 (Description)
+      description: 請用簡短的語言描述發生了什麼錯誤。
+      placeholder: |
+        在點擊「結帳」按鈕時，畫面卡住並出現 500 錯誤。
+    validations:
+      required: false
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: 🕯️ 召喚儀式 (Summoning Ritual / Reproduction Steps)
+      description: 這一點最重要！請一步步告訴我們如何讓這隻魔物再次出現。
+      render: markdown
+      placeholder: |
+        1. 前往登入頁面 '...'
+        2. 輸入帳號 '...'
+        3. 點擊按鈕 '...'
+        4. 魔物出現（看見錯誤訊息）
+    validations:
+      required: false
+
+  - type: textarea
+    id: expected-behavior
+    attributes:
+      label: ⚖️ 平行時空 (Expected Behavior)
+      description: 如果世界正常運轉，應該發生什麼事？
+      placeholder: 應該要成功跳轉到感謝頁面，並收到 Email 通知。
+    validations:
+      required: false
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: 🏜️ 戰場環境 (Environment)
+      description: 魔物是在什麼環境下被發現的？(OS, Browser, App Version)
+      placeholder: |
+        - Desktop / Mobile
+        - OS: Windows 10 / macOS / iOS 15
+        - Browser: Chrome 90 / Safari
+        - Version: v1.2.0
+    validations:
+      required: false
+
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: 📸 留影水晶 (Screenshots / Logs)
+      description: 有圖有真相。請將截圖或錯誤 Log 貼在這邊。
+      render: markdown
+    validations:
+      required: false
+
+  - type: dropdown
+    id: severity
+    attributes:
+      label: 🔥 威脅等級 (Threat Level)
+      description: 請評估這隻魔物對世界的破壞程度。
+      options:
+        - "P0 🔥 滅世級 - 系統崩潰，無法運作 (Critical)"
+        - "P1 ⚔️ 災害級 - 主要功能故障，無替代方案 (Major)"
+        - "P2 📜 騷擾級 - 功能異常但有替代方案 (Minor)"
+        - "P3 🥚 裝飾級 - 排版錯位或文案錯誤 (Trivial)"
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: 🛡️ 冒險者誓言
+      description: 提交前請確認：
+      options:
+        - label: 我已檢查過 Issue 列表，確認沒有重複的目擊報告。
+          required: false
+        - label: 我提供的情報真實無誤，絕無虛報。
+          required: false
