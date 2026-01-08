@@ -1,0 +1,100 @@
+name: 📜 發布新委託 (New Quest / Feature)
+description: PM 專用：在此張貼新的功能需求或冒險任務規格書。
+title: "[Feat]: <請輸入任務名稱>"
+labels: ["Status: 待辦事項", "Type: Feature"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        # ⚔️ 冒險委託單 (Quest Specification)
+        歡迎來到公會櫃台。請詳細描述這次的冒險內容，越清晰的情報越能降低滅團（Bug）的風險。
+
+  - type: textarea
+    id: user-story
+    attributes:
+      label: 🗺️ 冒險背景 (User Story)
+      description: 請描述誰需要這個功能，以及為什麼。
+      placeholder: |
+        作為一個 <角色>，
+        我想要 <執行某個動作>，
+        以便於 <達成某個目的>。
+    validations:
+      required: false
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: 🔥 威脅等級 (Priority)
+      description: 請誠實評估此任務的緊急程度，亂標 P0 會導致公會信用破產。
+      options:
+        - "P0 🔥 放下一切，全體動員 (World Boss)"
+        - "P1 ⚔️ 本次 Sprint 必須修完 (Main Quest)"
+        - "P2 📜 排入下次 Sprint 或有空時 (Side Quest)"
+        - "P3 🥚 有資源再說，甚至可能不修 (Easter Egg)"
+    validations:
+      required: false
+
+  - type: textarea
+    id: detailed-specs
+    attributes:
+      label: ⚔️ 任務詳情 (Detailed Specs)
+      description: 請提供詳細的規格說明、邏輯流程，或是附上 Figma/截圖連結。支援 Markdown 語法。
+      render: markdown
+      placeholder: |
+        1. 登入畫面需新增「魔法指紋」驗證按鈕。
+        2. 點擊後呼叫 API `/api/magic-auth`。
+        3. 若驗證失敗，需彈出紅色警告視窗。
+        
+        📎 附圖/Figma連結：
+        ...
+    validations:
+      required: false
+
+  - type: textarea
+    id: acceptance-criteria
+    attributes:
+      label: 🏆 勝利條件 (Acceptance Criteria)
+      description: 工程師要做到什麼程度才算「通關」？這也是 QA 測試的依據。支援 Markdown 語法。
+      render: markdown
+      placeholder: |
+        - [ ] 使用者可以使用指紋成功登入。
+        - [ ] 失敗時錯誤訊息顯示正確。
+        - [ ] 在手機版版面不會跑版。
+    validations:
+      required: false
+
+  - type: textarea
+    id: out-of-scope
+    attributes:
+      label: 🚫 禁忌之地 (Out of Scope)
+      description: 這次任務「不包含」什麼？(避免範疇蔓延)
+      placeholder: |
+        - 不需要支援 IE 瀏覽器。
+        - 這次先不做「臉部辨識」，只做指紋。
+  
+  - type: dropdown
+    id: complexity-guess
+    attributes:
+      label: 🔮 預估難度 (Complexity Guess)
+      description: PM 的直覺猜測（實際難度由工程師在 Grooming 會議決定）。
+      options:
+        - "XS 🔹 史萊姆 (做就對了)"
+        - "S 🔸 哥布林 (練功機會)"
+        - "M 💀 菁英怪 (主力任務)"
+        - "L 👹 地下城首領 (資深追蹤)"
+        - "XL 🐲 上古巨龍 (需拆解)"
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: pre-flight-check
+    attributes:
+      label: 🎒 出發前整備 (Pre-flight Check)
+      description: 發布任務前，請務必確認物資是否齊全。未勾選無法送出。
+      options:
+        - label: UI/UX 設計圖已確認定稿 (Design Ready)
+          required: false
+        - label: 後端 API 文件已備妥 (API Ready)
+          required: false
+        - label: 我已確認沒有重複的委託單
+          required: false
