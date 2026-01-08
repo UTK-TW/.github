@@ -1,8 +1,17 @@
+# 🚫 禁止開啟空白 Issue
+# 這能強迫所有人都必須使用「委託單」或「目擊報告書」，確保格式統一。
 blank_issues_enabled: false
+
+# 🔗 外部連結指引 (導流非 Issue 的需求)
 contact_links:
-  - name: 📞 技術支援
-    url: https://www.utk.com.tw/
-    about: 如需技術支援，請透過官方網站聯絡我們
-  - name: 💬 一般諮詢
+  - name: 🍺 冒險者酒館 (GitHub Discussions)
     url: https://github.com/UTK-TW/.github/discussions
-    about: 一般問題討論與交流
+    about: 想要閒聊、詢問攻略、討論技術細節，但還不到立案程度？請來酒館喝一杯。
+
+  - name: 📚 皇家圖書館 (Documentation / Wiki)
+    url: https://github.com/UTK-TW/.github/wiki
+    about: 尋找技能說明書、API 文件或世界觀設定？請先查閱圖書館。
+
+  - name: 🕵️ 舉報機密漏洞 (Security Vulnerability)
+    url: https://github.com/UTK-TW/.github/security/advisories/new
+    about: 發現了可能毀滅世界的資安漏洞？請勿公開張貼，請走密道通報。
