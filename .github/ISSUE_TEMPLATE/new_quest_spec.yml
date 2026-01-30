@@ -39,7 +39,6 @@ body:
     attributes:
       label: ⚔️ 任務詳情 (Detailed Specs)
       description: 請提供詳細的規格說明、邏輯流程，或是附上 Figma/截圖連結。支援 Markdown 語法。
-      render: markdown
       placeholder: |
         1. 登入畫面需新增「魔法指紋」驗證按鈕。
         2. 點擊後呼叫 API `/api/magic-auth`。
@@ -55,7 +54,6 @@ body:
     attributes:
       label: 🏆 勝利條件 (Acceptance Criteria)
       description: 工程師要做到什麼程度才算「通關」？這也是 QA 測試的依據。支援 Markdown 語法。
-      render: markdown
       placeholder: |
         - [ ] 使用者可以使用指紋成功登入。
         - [ ] 失敗時錯誤訊息顯示正確。
