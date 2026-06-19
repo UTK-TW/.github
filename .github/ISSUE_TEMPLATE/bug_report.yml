@@ -1,7 +1,7 @@
 name: 🐞 魔物目擊報告書 (Bug Report)
 description: 發現 Bug 了嗎？請詳細描述這隻魔物的特徵，協助公會進行討伐。
 title: "[Bug]: <請輸入 Bug 簡述>"
-labels: ["Status: 待辦事項", "Type: Bug", "needs-triage"]
+labels: ["類型: 錯誤", "狀態: 待分類"]
 body:
   - type: markdown
     attributes:

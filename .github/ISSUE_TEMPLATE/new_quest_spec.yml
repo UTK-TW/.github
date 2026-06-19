@@ -1,7 +1,7 @@
 name: 📜 發布新委託 (New Quest / Feature)
 description: PM 專用：在此張貼新的功能需求或冒險任務規格書。
 title: "[Feat]: <請輸入任務名稱>"
-labels: ["Status: 待辦事項", "Type: Feature"]
+labels: ["類型: 功能", "狀態: 待分類"]
 body:
   - type: markdown
     attributes:
