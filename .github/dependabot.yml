@@ -17,9 +17,7 @@ updates:
     assignees:
       - "Sen-CaPoo"
     labels:
-      - "dependencies"
-      - "dotnet"
-      - "security"
+      - "類型: 相依套件"
     commit-message:
       prefix: "🔧"
       include: "scope"
@@ -38,9 +36,7 @@ updates:
     assignees:
       - "Sen-CaPoo"
     labels:
-      - "dependencies"
-      - "javascript"
-      - "frontend"
+      - "類型: 相依套件"
     commit-message:
       prefix: "📦"
       include: "scope"
@@ -59,9 +55,7 @@ updates:
     assignees:
       - "Sen-CaPoo"
     labels:
-      - "dependencies"
-      - "docker"
-      - "devops"
+      - "類型: 相依套件"
     commit-message:
       prefix: "🐳"
       include: "scope"
@@ -80,9 +74,7 @@ updates:
     assignees:
       - "Sen-CaPoo"
     labels:
-      - "dependencies"
-      - "github-actions"
-      - "ci-cd"
+      - "類型: 相依套件"
     commit-message:
       prefix: "⚡"
       include: "scope"
@@ -101,9 +93,7 @@ updates:
     assignees:
       - "Sen-CaPoo"
     labels:
-      - "dependencies"
-      - "python"
-      - "backend"
+      - "類型: 相依套件"
     commit-message:
       prefix: "🐍"
       include: "scope"
@@ -122,9 +112,7 @@ updates:
     assignees:
       - "Sen-CaPoo"
     labels:
-      - "dependencies"
-      - "go"
-      - "backend"
+      - "類型: 相依套件"
     commit-message:
       prefix: "🚀"
       include: "scope"

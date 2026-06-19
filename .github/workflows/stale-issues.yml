@@ -91,10 +91,10 @@ jobs:
           days-before-pr-close: 7
           
           # 標籤設定
-          stale-issue-label: 'stale'
-          stale-pr-label: 'stale'
-          exempt-issue-labels: 'pinned,security,enhancement'
-          exempt-pr-labels: 'pinned,security,work-in-progress'
+          stale-issue-label: '狀態: 停滯'
+          stale-pr-label: '狀態: 停滯'
+          exempt-issue-labels: '優先: P0,優先: P1,標記: 線上事故,類型: 安全'
+          exempt-pr-labels: '優先: P0,優先: P1,標記: 線上事故,狀態: 進行中'
           
           # 其他設定
           ascending: true
