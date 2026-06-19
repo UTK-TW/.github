@@ -1,196 +1,192 @@
-# 標籤定義檔案
-# 此檔案定義了環友科技專案中使用的標準標籤
-# 使用 GitHub Label Sync 工具同步到各儲存庫
+# 標籤定義檔案（環友科技 UTK-TW 標準標籤）
+# 由 utk-label-revamp/canonical-labels.json 產生，共 45 個標籤。
+# 此檔為組織標籤的單一來源；推送至 main 會觸發 sync-labels-to-all-repos 同步至所有 repo。
+# 命名：中文前綴 + 半形冒號空格（如「類型: 錯誤」）。
 
-# 問題類型標籤
-- name: "bug"
-  description: "軟體錯誤或異常行為"
+# === 類型 type ===
+- name: "類型: 錯誤"
+  description: "程式無法正常運作的缺陷。對應 GitHub 預設 bug，保留紅色維持視覺慣性。"
   color: "d73a4a"
 
-- name: "enhancement"
-  description: "功能增強或新特性"
-  color: "a2eeef"
+- name: "類型: 功能"
+  description: "新功能或功能需求。涵蓋舊 GitHub 預設 enhancement。"
+  color: "1d76db"
 
-- name: "question"
-  description: "問題詢問或技術支援"
+- name: "類型: 重構"
+  description: "不改變外部行為的程式碼結構改善、清理與技術債償還。"
+  color: "0a6fc2"
+
+- name: "類型: 效能"
+  description: "效能最佳化（回應時間、查詢、記憶體）。"
+  color: "0098a6"
+
+- name: "類型: 安全"
+  description: "資安弱點、權限、加密與相依套件漏洞修補。"
+  color: "5319e7"
+
+- name: "類型: 測試"
+  description: "新增或修正單元/整合/端對端測試與測試基礎建設。"
+  color: "5294e2"
+
+- name: "類型: 文件"
+  description: "文件的新增或改善。對應 GitHub 預設 documentation。"
+  color: "006bb8"
+
+- name: "類型: 建置"
+  description: "建置流程、編譯、打包、發行與 CI 管線設定。吸收舊 type:ci 與 type:release。"
+  color: "0a3069"
+
+- name: "類型: 雜務"
+  description: "不影響功能的維護性雜務（設定整理、版本提升、例行清理）。"
+  color: "9fc1e8"
+
+- name: "類型: 相依套件"
+  description: "NuGet/套件相依更新（含 Dependabot）。注意：改名前須同步更新 dependabot.yml 的 labels:。"
+  color: "3a83bd"
+
+- name: "類型: 設計"
+  description: "跨元件的 UI/UX 設計與設計研究（版型、列印版面、橫跨 API+UI 的體驗）。"
+  color: "7b6fd6"
+
+- name: "類型: 資料遷移"
+  description: "EF Core Migration、資料結構變更與資料搬遷。獨立高風險運維活動。"
+  color: "00485f"
+
+# === 領域 area ===
+- name: "領域: 前端"
+  description: "Includes：ASP.NET MVC 網站前端、Razor/View 檢視、版型、前端靜態資源與瀏覽器端問題。"
+  color: "0e8a16"
+
+- name: "領域: 後端 API"
+  description: "Includes：Web API 控制器、REST 端點、服務層、商業邏輯。"
+  color: "1a7f37"
+
+- name: "領域: 資料庫"
+  description: "Includes：EF Core、資料表結構、SQL 查詢與資料層效能調校。Migration 改標 類型: 資料遷移。"
+  color: "40c463"
+
+- name: "領域: 身分驗證"
+  description: "Includes：登入、會員身分驗證（Authn）、授權（Authz）、權限與角色控管。"
+  color: "2db74a"
+
+- name: "領域: 排程作業"
+  description: "Includes：Windows 排程器、批次處理、獨立 EXE 程式與背景工作。"
+  color: "57d364"
+
+- name: "領域: 基礎設施與部署"
+  description: "Includes：IIS 主機、Azure 雲端資源、部署、GitHub Actions CI/CD。"
+  color: "116329"
+
+- name: "領域: 監控與日誌"
+  description: "Includes：記錄（logging）、監控、告警、診斷與追蹤。"
+  color: "7ee787"
+
+- name: "領域: 設定組態"
+  description: "Includes：appsettings/web.config、連線字串、功能旗標與環境設定。"
+  color: "aff0bb"
+
+- name: "領域: 金流與結帳"
+  description: "Includes：購物車結帳、訂單、金流串接與對帳。電商商城與票務的最高價值業務面向。"
+  color: "04461f"
+
+- name: "領域: 第三方整合"
+  description: "Includes：金流閘道、短網址、檔案同步與其他外部 API 串接（對外通知見 領域: 通知與訊息）。"
+  color: "1f8c3a"
+
+- name: "領域: 通知與訊息"
+  description: "Includes：推播伺服器、Email、簡訊、行事曆等對使用者的外送通知。"
+  color: "85d0a0"
+
+# === 優先 priority ===
+- name: "優先: P0"
+  description: "最高級——立即處理（放下手邊工作）。線上中斷、資料毀損、金流/結帳停擺等。"
+  color: "b60205"
+
+- name: "優先: P1"
+  description: "高——本週/本次發行內處理。重大功能受損但有暫時替代方案。"
+  color: "d93f0b"
+
+- name: "優先: P2"
+  description: "中——排入近期迭代。一般缺陷或改善，可規劃處理。"
+  color: "e99695"
+
+- name: "優先: P3"
+  description: "最低有標示級——待辦/未排程（backlog）。無優先標籤即視為尚未分級。"
+  color: "fbca04"
+
+# === 狀態 status ===
+- name: "狀態: 待分類"
+  description: "尚未分類/評估的新進議題。待補上類型/領域/優先後移除。"
+  color: "8957e5"
+
+- name: "狀態: 進行中"
+  description: "已有負責人正在處理中。"
+  color: "a371f7"
+
+- name: "狀態: 等待審查"
+  description: "已完成、等待程式碼審查或驗收（含 QA/測試驗證階段）。"
+  color: "6e40c9"
+
+- name: "狀態: 受阻"
+  description: "因外部相依、決策未定或暫緩而無法推進。"
+  color: "5a32a3"
+
+- name: "狀態: 待補資訊"
+  description: "等待回報者或關係人補充重現步驟/資訊或待調查。"
+  color: "c8a2f0"
+
+- name: "狀態: 停滯"
+  description: "長期無回應/停滯，可能過期。"
+  color: "d2c0f5"
+
+# === 環境 env ===
+- name: "環境: 開發"
+  description: "開發環境（本機/開發機）發生或限定。"
+  color: "8a9199"
+
+- name: "環境: 測試"
+  description: "測試/預備（Staging）環境發生或限定。"
+  color: "b8c0c8"
+
+- name: "環境: 正式"
+  description: "正式（線上）環境發生或限定。最高影響範圍。"
+  color: "5b6168"
+
+# === 無效/結案 resolution ===
+- name: "無效: 重複"
+  description: "與既有議題/PR 重複。對應 GitHub 預設 duplicate。"
+  color: "ddd0c0"
+
+- name: "無效: 不成立"
+  description: "問題不成立或非屬本專案。對應 GitHub 預設 invalid。"
+  color: "c9b783"
+
+- name: "無效: 不修正"
+  description: "不予處理（設計如此/成本過高）。對應 GitHub 預設 wontfix。"
+  color: "9c8f80"
+
+# === 討論協作 community ===
+- name: "討論: 問題詢問"
+  description: "提問型議題，需進一步資訊或屬討論性質。對應 GitHub 預設 question。"
   color: "d876e3"
 
-- name: "testing"
-  description: "測試相關的改進或問題"
-  color: "f39c12"
-
-- name: "refactor"
-  description: "程式碼重構與最佳化"
-  color: "17a2b8"
-
-- name: "needs-investigation"
-  description: "需要深入調查與分析"
-  color: "6f42c1"
-
-- name: "documentation"
-  description: "文件撰寫與維護"
-  color: "0075ca"
-
-# 優先級標籤
-- name: "priority: urgent"
-  description: "緊急處理 - 立即執行"
-  color: "8b0000"
-
-- name: "priority: critical"
-  description: "重要修復 - 影響正式環境"
-  color: "ff0000"
-
-- name: "priority: high"
-  description: "高優先級 - 需優先處理"
-  color: "ff6600"
-
-- name: "priority: medium"
-  description: "中優先級 - 正常排程"
-  color: "ffcc00"
-
-- name: "priority: low"
-  description: "低優先級 - 有餘力時處理"
-  color: "99cc00"
-
-# 狀態標籤
-- name: "needs-triage"
-  description: "待分類與評估"
-  color: "fbca04"
-
-- name: "in-progress"
-  description: "開發進行中"
-  color: "0e8a16"
-
-- name: "on-hold"
-  description: "暫時擱置"
-  color: "d93f0b"
-
-- name: "blocked"
-  description: "開發受阻 - 等待前置條件"
-  color: "b60205"
-
-- name: "ready-for-review"
-  description: "準備程式碼審查"
-  color: "0e8a16"
-
-- name: "changes-requested"
-  description: "審查後需要修改"
-  color: "d93f0b"
-
-# 技術領域標籤
-- name: "area: frontend"
-  description: "前端開發 (UI/UX)"
-  color: "c5def5"
-
-- name: "area: backend"
-  description: "後端開發 (API/服務)"
-  color: "5319e7"
-
-- name: "area: api"
-  description: "API 設計與整合"
-  color: "0366d6"
-
-- name: "area: database"
-  description: "資料庫設計與查詢"
-  color: "1d76db"
-
-- name: "area: deployment"
-  description: "部署與基礎設施"
-  color: "bfdadc"
-
-- name: "area: task-scheduler"
-  description: "排程任務與自動化"
-  color: "f9d0c4"
-
-- name: "area: security"
-  description: "資訊安全相關"
-  color: "d73a4a"
-
-- name: "area: performance"
-  description: "效能調校與最佳化"
-  color: "28a745"
-
-- name: "area: testing"
-  description: "測試框架與品質保證"
-  color: "f39c12"
-
-- name: "area: devops"
-  description: "DevOps 與 CI/CD"
-  color: "6c757d"
-
-# 影響範圍標籤
-- name: "scope: breaking-change"
-  description: "破壞性變更 - 需版本升級"
-  color: "b60205"
-
-- name: "scope: minor"
-  description: "小幅修改 - 向下相容"
-  color: "28a745"
-
-- name: "scope: major"
-  description: "重大修改 - 影響多個模組"
-  color: "dc3545"
-
-# 特殊標籤
-- name: "good-first-issue"
-  description: "適合新手開發者"
-  color: "7057ff"
-
-- name: "help-wanted"
-  description: "需要社群協助"
+- name: "協作: 徵求協助"
+  description: "需額外人力/跨團隊支援。對應 GitHub 預設 help wanted。"
   color: "008672"
 
-- name: "wontfix"
-  description: "決定不修復"
-  color: "6c757d"
+# === 特殊標記 flags ===
+- name: "標記: 破壞性變更"
+  description: "造成 API/相容性破壞的變更。可與任一類型/優先疊加。"
+  color: "ff2d2d"
 
-- name: "duplicate"
-  description: "重複的議題"
-  color: "cfd3d7"
+- name: "標記: 回歸"
+  description: "先前正常、後續版本壞掉的回歸缺陷（疊加於 類型: 錯誤 之上）。"
+  color: "ff7518"
 
-- name: "invalid"
-  description: "無效的議題"
-  color: "d1a712"
-
-# 版本標籤
-- name: "version: v1.x"
-  description: "版本 1.x 相關"
-  color: "1d76db"
-
-- name: "version: v2.x"
-  description: "版本 2.x 相關"
-  color: "0366d6"
-
-- name: "version: next"
-  description: "下一個版本"
-  color: "5319e7"
-
-# 環境標籤
-- name: "env: development"
-  description: "開發環境"
-  color: "c5def5"
-
-- name: "env: staging"
-  description: "測試環境"
-  color: "fbca04"
-
-- name: "env: production"
-  description: "生產環境"
+- name: "標記: 線上事故"
+  description: "線上服務事故/故障（電商/票務尤需）。回滾作業亦歸於此。"
   color: "8b0000"
 
-# 依賴性標籤
-- name: "dependencies"
-  description: "第三方套件與依賴"
-  color: "0366d6"
-
-- name: "dotnet"
-  description: ".NET 平台相關"
-  color: "512bd4"
-
-- name: "azure"
-  description: "Azure 雲端服務"
-  color: "0078d4"
-
-- name: "entityframework"
-  description: "Entity Framework ORM"
-  color: "512bd4"
+- name: "標記: 緊急修補"
+  description: "prod 緊急、計畫外的快速修補（與『線上事故』事件本身有別）。"
+  color: "ffab00"

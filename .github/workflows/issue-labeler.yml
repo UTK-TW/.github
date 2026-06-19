@@ -24,44 +24,44 @@ jobs:
             
             // 根據標題前綴添加標籤
             if (title.includes('[bug]') || title.includes('[security]')) {
-              labels.push('bug');
+              labels.push('類型: 錯誤');
             }
             if (title.includes('[feature]') || title.includes('[enhancement]')) {
-              labels.push('enhancement');
+              labels.push('類型: 功能');
             }
             if (title.includes('[performance]')) {
-              labels.push('performance', 'optimization');
+              labels.push('類型: 效能');
             }
             if (title.includes('[security]')) {
-              labels.push('security', 'high-priority');
+              labels.push('類型: 安全', '優先: P1');
             }
             if (title.includes('[docs]') || title.includes('[documentation]')) {
-              labels.push('documentation');
+              labels.push('類型: 文件');
             }
             
             // 根據內容關鍵字添加標籤
             if (body.includes('安全') || body.includes('漏洞') || body.includes('security')) {
-              labels.push('security');
+              labels.push('類型: 安全');
             }
             if (body.includes('效能') || body.includes('performance') || body.includes('slow')) {
-              labels.push('performance');
+              labels.push('類型: 效能');
             }
             if (body.includes('文檔') || body.includes('說明') || body.includes('documentation')) {
-              labels.push('documentation');
+              labels.push('類型: 文件');
             }
             if (body.includes('api')) {
-              labels.push('api');
+              labels.push('領域: 後端 API');
             }
             if (body.includes('ui') || body.includes('前端') || body.includes('frontend')) {
-              labels.push('frontend');
+              labels.push('領域: 前端');
             }
             if (body.includes('backend') || body.includes('後端') || body.includes('server')) {
-              labels.push('backend');
+              labels.push('領域: 後端 API');
             }
-            
+
             // 添加預設標籤
             if (labels.length === 0) {
-              labels.push('needs-triage');
+              labels.push('狀態: 待分類');
             }
             
             // 去重
@@ -91,17 +91,17 @@ jobs:
             // 高優先級關鍵字
             if (title.includes('urgent') || title.includes('critical') || title.includes('緊急') ||
                 body.includes('urgent') || body.includes('critical') || body.includes('緊急')) {
-              priorityLabels.push('high-priority');
+              priorityLabels.push('優先: P1');
             }
             // 中優先級關鍵字
             else if (title.includes('important') || title.includes('重要') ||
                      body.includes('important') || body.includes('重要')) {
-              priorityLabels.push('medium-priority');
+              priorityLabels.push('優先: P2');
             }
             // 低優先級關鍵字
             else if (title.includes('nice to have') || title.includes('建議') ||
                      body.includes('nice to have') || body.includes('建議')) {
-              priorityLabels.push('low-priority');
+              priorityLabels.push('優先: P3');
             }
             
             if (priorityLabels.length > 0) {
